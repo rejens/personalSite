@@ -18,14 +18,16 @@ function Main() {
     })();
   }, []);
 
-  let spinner = isLoading ? <img width="50px" src={Loading} alt="" /> : "";
+  // let spinner = isLoading ? <img width="50px" src={Loading} alt="" /> : "";
   return (
     <div className="main-background">
       <div className="card">
         <img className="myImg" src={Zoro} alt="" />
         <div className="text">
           <div className="name">Rejens</div>
-          {spinner}
+          {isLoading && <img width="50px" src={Loading} alt="" />}
+          {/* {spinner} */}
+
           <div className="description">{quote}</div>
           <div className="author">{author}</div>
           <div className="links">
