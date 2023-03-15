@@ -7,15 +7,23 @@ function Main() {
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [time, setTime] = useState();
+
+  const fetchData = async () => {
+    let value = await fetch("https://api.quotable.io/random");
+    value = await value.json();
+    setQuote(value.content);
+    setAuthor("~ " + value.author);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    (async function fetchData() {
-      let value = await fetch("https://api.quotable.io/random");
-      value = await value.json();
-      setQuote(value.content);
-      setAuthor("~ " + value.author);
-      setIsLoading(false);
-    })();
+    fetchData();
+    const interval = setInterval(() => {
+      fetchData();
+      // console.log("display");
+    }, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   // let spinner = isLoading ? <img width="50px" src={Loading} alt="" /> : "";
