@@ -22,7 +22,7 @@ function Main() {
     const interval = setInterval(() => {
       fetchData();
       // console.log("display");
-    }, 10000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
